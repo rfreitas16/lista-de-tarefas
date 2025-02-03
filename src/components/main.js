@@ -1,8 +1,10 @@
 import React, { Component } from "react";
-import './main.css';
-import {FaPlus} from 'react-icons/fa';
 
-import {FaEdit, FaWindowClose} from 'react-icons/fa';
+import Form from './Form';
+import Tarefas from './Tarefas';
+import './main.css';
+
+
 
 export default class Main extends Component{
     state = {
@@ -68,7 +70,7 @@ export default class Main extends Component{
             });
         }
     
-        inputMudou= (e) => {
+        handleChange= (e) => {
             this.setState({
                 novaTarefa: e.target.value,
             });
@@ -81,22 +83,18 @@ export default class Main extends Component{
 
         <div className="main">
             <h1>Lista de tarefas</h1>
+            <Form
+                handleSubmit={this.handleSubmit}
+                handleChange={this.handleChange}
+                novaTarefa={novaTarefa}
+            />
+            <Tarefas
+            tarefas={tarefas}
+                handleEdit={this.handleEdit}
+                handleDelete={this.handleDelete}
 
-            <form onSubmit={this.handleSubmit} action="" className="form">
-                <input onChange={this.inputMudou}type="text"
-                value={novaTarefa} />
-                <button type="submit"><FaPlus/></button>
-            </form>
-            <ul className="tarefas">
-                {tarefas.map((tarefa, index) =>(
-                    <li key={tarefa}>{tarefa}
-                    <span>
-                        <FaEdit onClick={(e) =>this.handleEdit(e, index)}className="edit" />
-                        <FaWindowClose onClick={(e) =>this.handleDelete(e, index)} className="delete" />
-                    </span>
-                    </li>
-                ))}
-            </ul>
+            />
+
 
         </div>
         );
