@@ -22,21 +22,25 @@
     font-size: 20px;
     border: 1px solid #ccc;
     min-width: 80%;
+    border-radius: 6px;
 }
 .form button[type="submit"]{
     border: none;
     height: 40px;
     width: 40px;
-    background: #c9c9c9;
+    background: #6edb73;
     color: #fff;
     display: flex;
     align-items: center;
     justify-content: center;
     border-radius: 8px;
+    margin-left: 10px;
+    cursor: pointer;
 }
 .tarefas{
     color: #000;
     margin-top: 20px;
+    padding: 0 10px;
 }
 .tarefas li {
     display: flex;
@@ -47,14 +51,16 @@
 }
 .tarefas li:hover {
     background: #51c5de;
+    border-radius: 4px;
 }
 .tarefas .edit{
     margin-right: 10px;
     cursor: pointer;
+    color: #497dee;
 }
 .tarefas .delete{
-    background: #f04c64;
-    margin-right: 15px;
+    color: #f04c64;
+    margin-right: 10px;
     cursor: pointer;
 }
 .tarefas li .edit, .tarefas li .delete{

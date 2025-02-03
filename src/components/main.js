@@ -4,15 +4,27 @@ import {FaPlus} from 'react-icons/fa';
 
 import {FaEdit, FaWindowClose} from 'react-icons/fa';
 
-
-
 export default class Main extends Component{
     state = {
             novaTarefa: '',
             tarefas:[],
             index: -1,
         };
-        //cria nova tarefa e joga no array para exibir na tela
+
+        componentDidMount(){
+            const tarefas = JSON.parse(localStorage.getItem('tarefas'));
+            if (!tarefas) return;
+            this.setState({tarefas});
+        }   
+
+        componentDidUpdate(prevProps, prevState){
+            const{tarefas} = this.state;
+            if(tarefas === prevState.tarefas) return;
+
+            localStorage.setItem('tarefas', JSON.stringify(tarefas));
+        }
+
+    //cria nova tarefa e joga no array para exibir na tela
         handleSubmit=(e)=>{
             e.preventDefault();
             const{ tarefas, index } = this.state;
@@ -23,20 +35,19 @@ export default class Main extends Component{
                 return;
             const novasTarefas = [...tarefas];
             if(index === -1){
-                //criar nova tarega
+                //cria nova tarefa
                 this.setState({
                     tarefas: [...novasTarefas, novaTarefa],
                     novaTarefa: '',
                 });
             } else {
+                //edita tarefa
                 novasTarefas[index] = novaTarefa;
                 this.setState({
                     tarefas: [...novasTarefas],
                     index: -1,
                 });
             }
-
-
         }
         handleEdit = (e, index) => {
             const {tarefas} = this.state;
